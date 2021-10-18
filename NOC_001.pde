@@ -13,27 +13,34 @@ class Walker{
   }
   
   void step(){
-    int choice = int(random(4));
-    if(choice == 0){
-      x++; 
-    } else if (choice == 1) {
-      x--;
-    }else if (choice == 2 ){
-      y++;
-    }else {
-      y--; 
-    }
+    int stepx = int(random(3)) - 1;
+    int stepy = int(random(3)) - 1;
+    x += stepx;
+    y += stepy;
   }
   
 }
-Walker w;
+//Walker w;
+int [] randomCounts;
 void setup(){
   size(640,350);
-  w = new Walker();
+  //w = new Walker();
   background(255);
+  randomCounts = new int[20];
 }
 
 void draw(){
-  w.step();
-  w.display();
+  background(255);
+  int index = int(random(randomCounts.length));
+  randomCounts[index]++;
+  stroke(0);
+  fill(175);
+  int w = width/randomCounts.length;
+  
+  for(int x = 0; x < randomCounts.length; x++){
+    rect(x*w, height - randomCounts[x], w-1, randomCounts[x]);
+  }
+  
+  //w.step();
+  //w.display();
 }
